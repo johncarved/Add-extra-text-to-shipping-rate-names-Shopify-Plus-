@@ -1,0 +1,49 @@
+Simple way to show extra text on shipping methods. Useful for when you want to add a simple line of extra detail without changing the method's name. Pure CSS. Only works on Shopify Plus.
+
+The radio button for your shipping method will look something like this:
+  <span class="radio__label__primary" data-shipping-method-label-title="DHL Parcel International Standard">
+    DHL Parcel International Standard
+  </span>
+  
+We are simply going to target the data attribute specifically for each method and add ::after to put the content we want. This is the CSS to acheive that.
+
+----
+CSS
+----
+
+<style>
+  [data-shipping-method-label-title="DHL Parcel International Standard"]::after,
+  [data-shipping-method-label-title="DHL Express Worldwide"]::after {
+      display: block;
+      font-style: italic;
+      font-size: 12px;
+      margin-top: 3px;
+      margin-left: 49px;
+      color: #666;
+  }
+  [data-shipping-method-label-title="DHL Parcel International Standard"]::after {
+      content: "Delivery in 8-15 days";
+  }
+  [data-shipping-method-label-title="DHL Express Worldwide"]::after {
+      content: "Delivery in 3-7 days";
+  }
+</style>
+
+
+I also used this to show a DHL logo before the name:
+
+<style>
+  [data-shipping-method-label-title="DHL Express Worldwide"]::before,
+  [data-shipping-method-label-title="DHL Parcel International Standard"]::before {
+      content: "";
+      background-image: url('dhl-logo.png');
+      background-repeat: no-repeat;
+      background-size: 40px 20px;
+      width: 48px;
+      height: 20px;
+      display: block;
+      float: left;
+  }
+ </style>
+ 
+ You can grab DHL's logo right from their site: https://www.dhl.com/img/meta/dhl_logo.gif
